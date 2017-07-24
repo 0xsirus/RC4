@@ -39,8 +39,8 @@ void rc4(unsigned char  *key,int key_len,char *buff,int len){
     unsigned long t1,t2;
     unsigned char val;
     unsigned char out; 
-    for (i=0;i<len;i++){
-        t1=0;t2=0;
+    t1=0;t2=0;
+    for (i=0;i<len;i++){     
         t1 = (t1 + 1)%256;
         t2 = (t2 + s[t1])%256;
         swap(&s[t1],&s[t2]);
