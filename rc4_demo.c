@@ -71,7 +71,7 @@ int main(int argc,char ** argv){
     for (i=0;i<message_len;i++){
         printf("%02X",message[i]);
     }
-    printf("\n> \033[0mDecryted RC4 data with the same key: ");
+    printf("\n\033[0m> Decryted RC4 data with the same key: ");
     rc4(key,10,message,message_len);
     printf("\033[96m%s\033[0m\n",message);
 }
