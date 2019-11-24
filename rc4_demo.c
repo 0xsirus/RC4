@@ -1,7 +1,9 @@
 /*
-  Cyrus.Sh
-  ~cyn
+	By Sirus Shahini
+	~cyn
+	sirus.shahini@gmail.com
 */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,8 +19,8 @@ void swap(unsigned char *p1, unsigned char *p2){
 }
 
 void rc4_init(unsigned char *key,int key_len){
-    int                                     i,j=0;
-    char                                    *k=key;
+    int	i,j=0;
+    unsigned char	*k=key;
     //Initial values of both vectors
     for (i=0;i<256;i++){
         s[i] = i;
@@ -28,8 +30,7 @@ void rc4_init(unsigned char *key,int key_len){
     for (i=0;i<256;i++){
         j = (j + s[i] + t[i])%256;
         swap(&s[i],&s[j]);
-    }
-    
+    }    
 }
 
 void rc4(unsigned char  *key,int key_len,char *buff,int len){   
@@ -40,7 +41,8 @@ void rc4(unsigned char  *key,int key_len,char *buff,int len){
     unsigned char val;
     unsigned char out; 
     t1=0;t2=0;
-    for (i=0;i<len;i++){     
+    for (i=0;i<len;i++){
+        
         t1 = (t1 + 1)%256;
         t2 = (t2 + s[t1])%256;
         swap(&s[t1],&s[t2]);
@@ -52,26 +54,31 @@ void rc4(unsigned char  *key,int key_len,char *buff,int len){
 }
 
 int main(int argc,char ** argv){  
-    unsigned char message[1000];
-    strcpy(message,"Find the treasure 3 meters away from that tall tree where the kid passes by!");
-    int message_len = strlen(message);
-    unsigned char result[1000];
-    FILE *f = fopen("/dev/urandom","r");
-    unsigned char key[10];
-    fread(key,10,1,f);
+    char message[1000];
+    int message_len ;
     int i;
+
+    FILE *f = fopen("/dev/urandom","r");
+    unsigned char key[11];
+    
+    strcpy(message,"Find the treasure 3 meters away from that tall tree where the kid passes by!");
+    message_len = strlen(message);
+    fread(key,10,1,f);
+    
     for (i=0;i<10;i++){
-        key[i] = (key[i]/256.0*(rand()%26))+65;
+        key[i] = (char)((key[i]/256.0*(rand()%26))+65);
     }  
+    key[10]=0;
     printf("> Generated sample key: \033[96m%s\033[0m\n",key);
     printf("> Secret text: \033[96m%s\033[0m\n",message);
     printf("> Encryted message: \033[96m");
     rc4(key,10,message,message_len);
     //print HEX encoding of the encrypted message 
     for (i=0;i<message_len;i++){
-        printf("%02X",message[i]);
+        printf("%02X",(unsigned char)message[i]);
     }
-    printf("\n\033[0m> Decryted RC4 data with the same key: ");
+    printf("\n> \033[0mDecryted RC4 data with the same key: ");
     rc4(key,10,message,message_len);
     printf("\033[96m%s\033[0m\n",message);
 }
+
