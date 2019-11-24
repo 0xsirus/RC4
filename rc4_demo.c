@@ -63,7 +63,7 @@ int main(int argc,char ** argv){
     
     strcpy(message,"Find the treasure 3 meters away from that tall tree where the kid passes by!");
     message_len = strlen(message);
-    fread(key,10,1,f);
+    fread(key,1,10,f);
     
     for (i=0;i<10;i++){
         key[i] = (char)((key[i]/256.0*(rand()%26))+65);
