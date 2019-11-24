@@ -58,12 +58,13 @@ int main(int argc,char ** argv){
     int message_len ;
     int i;
 
-    FILE *f = fopen("/dev/urandom","r");
+    FILE *f_random = fopen("/dev/urandom","r");
     unsigned char key[11];
     
     strcpy(message,"Find the treasure 3 meters away from that tall tree where the kid passes by!");
     message_len = strlen(message);
-    fread(key,1,10,f);
+    fread(key,1,10,f_random);
+    fclose(f_random);
     
     for (i=0;i<10;i++){
         key[i] = (char)((key[i]/256.0*(rand()%26))+65);
