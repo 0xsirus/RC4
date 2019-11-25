@@ -20,11 +20,10 @@ void swap(unsigned char *p1, unsigned char *p2){
 
 void rc4_init(unsigned char *key,int key_len){
     int	i,j=0;
-    unsigned char	*k=key;
     //Initial values of both vectors
     for (i=0;i<256;i++){
         s[i] = i;
-        t[i] = k[i%key_len];
+        t[i] = key[i%key_len];
     }
     //Initial permutation 
     for (i=0;i<256;i++){
