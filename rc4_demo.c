@@ -33,14 +33,15 @@ void rc4_init(unsigned char *key,int key_len){
     }    
 }
 
-void rc4(unsigned char  *key,int key_len,char *buff,int len){   
-    rc4_init(key,key_len);
+void rc4(unsigned char  *key,int key_len,char *buff,int len){      
     int i=0;
     //process one byte at a time
     unsigned long t1,t2;
     unsigned char val;
     unsigned char out; 
     t1=0;t2=0;
+    rc4_init(key,key_len);
+    
     for (i=0;i<len;i++){
         
         t1 = (t1 + 1)%256;
