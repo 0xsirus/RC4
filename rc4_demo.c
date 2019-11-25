@@ -10,7 +10,7 @@
 
 unsigned char                               s[256];
 unsigned char                               t[256];
-unsigned char                               key[256];
+
 
 void swap(unsigned char *p1, unsigned char *p2){
     unsigned char t = *p1;
