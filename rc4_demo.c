@@ -61,9 +61,9 @@ int main(int argc,char ** argv){
     FILE *f_random = fopen("/dev/urandom","r");
     unsigned char key[11];
     
-    if (!f_random){
-	printf("Can't open urandom\n");
-	return -1;
+	if (!f_random){
+		printf("Can't open urandom\n");
+		return -1;
     }
     strcpy(message,"Find the treasure 3 meters away from that tall tree where the kid passes by!");
     message_len = strlen(message);
