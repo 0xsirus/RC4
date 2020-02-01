@@ -61,6 +61,10 @@ int main(int argc,char ** argv){
     FILE *f_random = fopen("/dev/urandom","r");
     unsigned char key[11];
     
+    if (!f_random){
+	printf("Can't open urandom\n");
+	return -1;
+    }
     strcpy(message,"Find the treasure 3 meters away from that tall tree where the kid passes by!");
     message_len = strlen(message);
     fread(key,1,10,f_random);
@@ -81,5 +85,7 @@ int main(int argc,char ** argv){
     printf("\n> \033[0mDecryted RC4 data with the same key: ");
     rc4(key,10,message,message_len);
     printf("\033[96m%s\033[0m\n",message);
+
+    return 0;
 }
 
