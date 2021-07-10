@@ -46,7 +46,7 @@ void rc4(unsigned char  *key,int key_len,char *buff,int len){
 		t1 = (t1 + 1)%256;
 		t2 = (t2 + s[t1])%256;
 		swap(&s[t1],&s[t2]);
-		val = (s[t1] + s[t2])%256;
+		val = s[(s[t1] + s[t2])%256];
 		out = *buff ^ val;
 		*buff=out;
 		buff++;
